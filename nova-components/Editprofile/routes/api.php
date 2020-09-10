@@ -14,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/endpoint', function (Request $request) {
-//     //
-// });
+Route::get('/', \Fastpay\Editprofile\Http\Controllers\UserProfileController::class . '@index');
+Route::post('/', \Fastpay\Editprofile\Http\Controllers\UserProfileController::class . '@store');

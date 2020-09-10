@@ -1,46 +1,156 @@
 <template>
-    <div>
-        <heading class="mb-6">Editprofile</heading>
+    <loading-view :loading="loading">
+        <heading class="mb-3">{{__("Edit Profile")}}</heading>
 
-        <card
-            class="bg-90 flex flex-col items-center justify-center"
-            style="min-height: 300px"
-        >
-            <svg
-                class="spin fill-80 mb-6"
-                width="69"
-                height="72"
-                viewBox="0 0 23 24"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    d="M20.12 20.455A12.184 12.184 0 0 1 11.5 24a12.18 12.18 0 0 1-9.333-4.319c4.772 3.933 11.88 3.687 16.36-.738a7.571 7.571 0 0 0 0-10.8c-3.018-2.982-7.912-2.982-10.931 0a3.245 3.245 0 0 0 0 4.628 3.342 3.342 0 0 0 4.685 0 1.114 1.114 0 0 1 1.561 0 1.082 1.082 0 0 1 0 1.543 5.57 5.57 0 0 1-7.808 0 5.408 5.408 0 0 1 0-7.714c3.881-3.834 10.174-3.834 14.055 0a9.734 9.734 0 0 1 .03 13.855zM4.472 5.057a7.571 7.571 0 0 0 0 10.8c3.018 2.982 7.912 2.982 10.931 0a3.245 3.245 0 0 0 0-4.628 3.342 3.342 0 0 0-4.685 0 1.114 1.114 0 0 1-1.561 0 1.082 1.082 0 0 1 0-1.543 5.57 5.57 0 0 1 7.808 0 5.408 5.408 0 0 1 0 7.714c-3.881 3.834-10.174 3.834-14.055 0a9.734 9.734 0 0 1-.015-13.87C5.096 1.35 8.138 0 11.5 0c3.75 0 7.105 1.68 9.333 4.319C16.06.386 8.953.632 4.473 5.057z"
-                    fill-rule="evenodd"
-                />
-            </svg>
+        <card class="overflow-hidden">
+            <form @submit.prevent="saveProfile">
+                <!-- Validation Errors -->
+                <validation-errors :errors="validationErrors"/>
 
-            <h1 class="text-white text-4xl text-90 font-light mb-6">
-                We're in a black hole.
-            </h1>
+                <!-- Fields -->
+                <div class="flex border-b border-40" resource-id="1">
+                    <div class="w-1/5 px-8 py-6">
+                        <label for="name" class="inline-block text-80 pt-2 leading-tight">Name<span class="text-danger text-sm">*</span></label>
+                    </div>
+                    
+                    <div class="py-6 px-8 w-1/2">
+                        <input id="name" name="name" v-model="fields.name" v-bind:class="(errors && errors.name)?'border-danger':''" dusk="name" list="name-list" type="text" placeholder="Name" class="w-full form-control form-input form-input-bordered">
+                        <div v-if="errors && errors.name" class="help-text help-text mt-2 text-danger">{{ errors.name[0] }}</div>
+                    </div>
+                </div>
+                
+                <div class="flex border-b border-40" resource-id="1">
+                    <div class="w-1/5 px-8 py-6">
+                        <label for="email" class="inline-block text-80 pt-2 leading-tight">Email<span class="text-danger text-sm">*</span></label>
+                    </div>
+                    
+                    <div class="py-6 px-8 w-1/2">
+                        <input id="email" name="email" v-model="fields.email" v-bind:class="(errors && errors.email)?'border-danger':''" dusk="email" list="email-list" type="text" placeholder="Email" class="w-full form-control form-input form-input-bordered">
+                        <div v-if="errors && errors.email" class="help-text help-text mt-2 text-danger">{{ errors.email[0] }}</div>
+                    </div>
+                </div>
 
-            <p class="text-white-50% text-lg">
-                You can edit this tool's component at:
-                <code class="ml-1 border border-80 text-sm font-mono text-white bg-black rounded px-2 py-1">
-                    /nova-components/Editprofile/resources/js/components/Tool.vue
-                </code>
-            </p>
+                <div class="flex border-b border-40">
+                    <div class="w-1/5 px-8 py-6">
+                        <label for="user_type" class="inline-block text-80 pt-2 leading-tight">User Type<span class="text-danger text-sm">*</span></label>
+                    </div>
+                
+                    <div class="py-6 px-8 w-1/2">
+                        <select id="user_type" name="user_type" v-model="fields.user_type" dusk="category" class="w-full form-control form-select">
+                            <option value="" :selected="true" disabled="disabled">Choose an option</option>
+                            <option v-for="u_type in fields.user_types">{{ u_type }}</option>
+                        </select>
+                
+                        <div class="help-text help-text mt-2"></div>
+                    </div>
+                </div>
+                
+                <div class="flex border-b border-40" resource-id="1">
+                    <div class="w-1/5 px-8 py-6">
+                        <label for="password" class="inline-block text-80 pt-2 leading-tight">Password</label>
+                    </div>
+                    
+                    <div class="py-6 px-8 w-1/2">
+                        <input id="password" name="password" v-model="fields.password" v-bind:class="(errors && errors.password)?'border-danger':''" dusk="password" type="password" placeholder="Password" autocomplete="new-password" class="w-full form-control form-input form-input-bordered">
+                        <div v-if="errors && errors.password" class="help-text help-text mt-2 text-danger">{{ errors.password[0] }}</div>
+                    </div>
+                </div>
+
+                <div class="flex border-b border-40 remove-bottom-border" resource-id="1">
+                    <div class="w-1/5 px-8 py-6">
+                        <label for="password_confirmation" class="inline-block text-80 pt-2 leading-tight">Password Confirmation</label>
+                    </div>
+                    
+                    <div class="py-6 px-8 w-1/2">
+                        <input id="password_confirmation" name="password_confirmation" v-model="fields.password_confirmation" v-bind:class="(errors && errors.password)?'border-danger':''" dusk="password" type="password" placeholder="Password Confirmation" autocomplete="new-password" class="w-full form-control form-input form-input-bordered">
+                        <div v-if="errors && errors.password" class="help-text help-text mt-2 text-danger">{{ errors.password[0] }}</div>
+                    </div>
+                </div>
+
+                <!-- Create Button -->
+                <div class="bg-30 flex px-8 py-4">
+                    <button dusk="create-and-add-another-button" class="ml-auto btn btn-default btn-primary mr-3">
+                        {{__('Save Profile')}}
+                    </button>
+                </div>
+            </form>
         </card>
-    </div>
+    </loading-view>
 </template>
 
 <script>
-export default {
-    mounted() {
-        //
-    },
-}
-</script>
+    export default {
 
-<style>
-/* Scoped Styles */
-</style>
+        data: () => ({
+            loading: true,
+            fields: {},
+            errors: {}
+        }),
+
+        created() {
+            this.getFields()
+        },
+
+        methods: {
+            /**
+             * Get the available fields for the resource.
+             */
+            async getFields() {
+                this.fields = {}
+
+                const { data: fields } = await Nova.request().get(
+                    '/nova-vendor/fastpay/editprofile'
+                )
+
+                // console.log(fields)
+
+                this.fields = fields
+                this.loading = false
+            },
+
+            /**
+             * Saves the user's profile
+             */
+            async saveProfile() {
+                try {
+                    this.loading = true
+                    const response = await this.createRequest()
+                    this.loading = false
+
+                    this.$toasted.show(
+                        this.__('Your profile has been saved!'),
+                        { type: 'success' }
+                    )
+
+                    // Reset the form by refetching the fields
+                    this.getFields()
+
+                    this.validationErrors = new Errors()
+                } catch (error) {
+                    this.loading = false
+                    
+                    if (error.response.status == 422) {
+                        this.errors = error.response.data.errors
+
+                        console.log(this.errors)
+                    }
+
+                    this.$toasted.show(
+                        this.__('There was a problem submitting the form'),
+                        { type: 'error' }
+                    )
+                }
+            },
+
+            /**
+             * Send a create request to update the user's profile data
+             */
+            createRequest() {
+                return Nova.request().post(
+                    '/nova-vendor/fastpay/editprofile',
+                    this.fields
+                )
+            },
+        },
+    }
+</script>
