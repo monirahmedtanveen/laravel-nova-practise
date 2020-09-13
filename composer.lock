@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "157d980591d2dfd86ee42d11bcfda917",
+    "content-hash": "e431278aa68342ecb48ac1e3eb1de6c1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2455,6 +2455,49 @@
                 "php"
             ],
             "time": "2020-08-30T16:15:20+00:00"
+        },
+        {
+            "name": "nrml-co/nova-big-filter",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nrml-co/nova-big-filter.git",
+                "reference": "09f9e171830b6a91c8a4d6a03100d766fa8933b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nrml-co/nova-big-filter/zipball/09f9e171830b6a91c8a4d6a03100d766fa8933b4",
+                "reference": "09f9e171830b6a91c8a4d6a03100d766fa8933b4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NrmlCo\\NovaBigFilter\\CardServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NrmlCo\\NovaBigFilter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A nice looking filter menu thats always open.",
+            "keywords": [
+                "card",
+                "filter",
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-10-16T02:13:01+00:00"
         },
         {
             "name": "opis/closure",

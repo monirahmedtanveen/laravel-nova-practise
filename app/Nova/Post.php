@@ -22,6 +22,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Beyondcode\StringLimit\StringLimit;
+use NrmlCo\NovaBigFilter\NovaBigFilter;
 
 class Post extends Resource
 {
@@ -137,7 +138,8 @@ class Post extends Resource
                 ->width('1/2'),
             (new PostsPerDay)->width('1/2'),
             (new PostCount)->width('1/2'),
-            (new PostsPerCategory)->width('1/2')
+            (new PostsPerCategory)->width('1/2'),
+            new NovaBigFilter,
         ];
     }
 
