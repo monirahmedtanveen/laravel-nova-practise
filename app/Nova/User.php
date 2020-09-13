@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Panel;
+use Eminiarts\Tabs\Tabs;
 
 class User extends Resource
 {
@@ -65,6 +68,18 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
+
+            (new Tabs(__('Client Custom Details'), [
+                new Panel(__('Details'), [
+                        ID::make('Id', 'id')->rules('required')->hideFromIndex(),
+                        Text::make('Name', 'name'),
+                ]),
+                HasMany::make('Posts', 'posts', Post::class),
+            ])),
+
+            new Tabs('Relations', [
+                HasMany::make('Posts', 'posts', Post::class),
+            ]),
         ];
     }
 

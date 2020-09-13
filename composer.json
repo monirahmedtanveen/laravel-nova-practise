@@ -16,6 +16,8 @@
         "beyondcode/string-limit": "*",
         "beyondcode/theme-nova": "*",
         "beyondcode/viewcache": "*",
+        "eminiarts/nova-tabs": "^1.2",
+        "fastpay/editprofile": "*",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
@@ -26,8 +28,7 @@
         "nemrutco/nova-filterable-metrics": "^1.1",
         "runlinenl/nova-profile-tool": "^1.1",
         "spatie/db-dumper": "^2.16",
-        "spatie/laravel-backup": "^6.11",
-        "fastpay/editprofile": "*"
+        "spatie/laravel-backup": "^6.11"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
