@@ -79,6 +79,7 @@ class User extends Resource
 
             new Tabs('Relations', [
                 HasMany::make('Posts', 'posts', Post::class),
+                HasMany::make('Locations', 'locations', Location::class)
             ]),
         ];
     }

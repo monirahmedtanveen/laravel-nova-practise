@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e431278aa68342ecb48ac1e3eb1de6c1",
+    "content-hash": "bf072cbc08bc6367806fb87eedb16906",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1288,6 +1288,59 @@
                 }
             ],
             "time": "2020-04-28T08:47:37+00:00"
+        },
+        {
+            "name": "genealabs/nova-map-marker-field",
+            "version": "0.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GeneaLabs/nova-map-marker-field.git",
+                "reference": "eaa7e7af2d206695f7718745b26750481681a031"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GeneaLabs/nova-map-marker-field/zipball/eaa7e7af2d206695f7718745b26750481681a031",
+                "reference": "eaa7e7af2d206695f7718745b26750481681a031",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^7.0",
+                "laravel/nova": "*",
+                "symfony/thanks": "^1.1"
+            },
+            "require-dev": {
+                "sebastian/phpcpd": "^5.0",
+                "squizlabs/php_codesniffer": "^3.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "GeneaLabs\\NovaMapMarkerField\\Providers\\Service"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GeneaLabs\\NovaMapMarkerField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "funding": [
+                {
+                    "url": "https://github.com/mikebronner",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-09-04T14:51:47+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -5745,6 +5798,63 @@
                 }
             ],
             "time": "2020-08-17T07:48:54+00:00"
+        },
+        {
+            "name": "symfony/thanks",
+            "version": "v1.2.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/thanks.git",
+                "reference": "733cc7b8c09a06c9251bd35d772b453b47d98442"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/thanks/zipball/733cc7b8c09a06c9251bd35d772b453b47d98442",
+                "reference": "733cc7b8c09a06c9251bd35d772b453b47d98442",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0|^2.0",
+                "php": "^5.5.9|^7.0.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                },
+                "class": "Symfony\\Thanks\\Thanks"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Thanks\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                }
+            ],
+            "description": "Encourages sending ⭐ and 💵 to fellow PHP package maintainers (not limited to Symfony components)!",
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-06-23T10:36:34+00:00"
         },
         {
             "name": "symfony/translation",
