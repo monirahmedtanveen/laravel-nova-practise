@@ -17,6 +17,7 @@ use Beyondcode\Viewcache\Viewcache;
 use Beyondcode\Cachetheview\Cachetheview;
 use Beyondcode\NovaClock\NovaClock;
 use Fastpay\Editprofile\Editprofile;
+use Anaseqal\NovaImport\NovaImport;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -104,7 +105,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             new Viewcache,
             new Cachetheview,
             new \Runline\ProfileTool\ProfileTool,
-            new Editprofile
+            new Editprofile,
+            new NovaImport
         ];
     }
 

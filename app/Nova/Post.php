@@ -23,6 +23,7 @@ use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Beyondcode\StringLimit\StringLimit;
 use NrmlCo\NovaBigFilter\NovaBigFilter;
+use Emiliogrv\NovaBatchLoad\BatchLoadField;
 
 class Post extends Resource
 {
@@ -85,6 +86,12 @@ class Post extends Resource
     {
         return [
             ID::make()->sortable(),
+
+            BatchLoadField::make()
+                ->accept('.csv')
+                ->defaultTabActive(1)
+                ->ignoreAttributes('title')
+                ->keepOriginalFields('belongs|select|boolean'),
 
             StringLimit::make('Title')->rules([
                 'required'
